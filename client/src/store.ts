@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import type { Product, CartItem } from './types';
 
-
 interface StoreState {
     cart: CartItem[];
     addToCart: (product: Product) => void;

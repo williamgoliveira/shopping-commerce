@@ -1,10 +1,22 @@
+export interface ProductTranslations {
+    en: {
+        name: string;
+        description: string;
+        category: string;
+    };
+    pt: {
+        name: string;
+        description: string;
+        category: string;
+    };
+}
+
 export interface Product {
     id: string;
-    name: string;
-    price: number;
-    description: string;
+    translations: ProductTranslations;
+    priceUSD: number;
+    priceBRL: number;
     image: string;
-    category: string;
 }
 
 export interface CartItem extends Product {

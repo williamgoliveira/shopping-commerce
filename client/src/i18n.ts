@@ -16,6 +16,9 @@ const resources = {
             "cart.empty": "Your cart is empty.",
             "cart.total": "Total",
             "cart.checkout": "Checkout",
+            "cart.qty": "Qty",
+            "cart.remove": "Remove",
+            "cart.orderSummary": "Order Summary",
             "footer.rights": "All rights reserved."
         }
     },
@@ -32,6 +35,9 @@ const resources = {
             "cart.empty": "Seu carrinho está vazio.",
             "cart.total": "Total",
             "cart.checkout": "Finalizar Compra",
+            "cart.qty": "Qtd",
+            "cart.remove": "Remover",
+            "cart.orderSummary": "Resumo do Pedido",
             "footer.rights": "Todos os direitos reservados."
         }
     }

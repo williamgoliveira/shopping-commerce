@@ -2,35 +2,41 @@ import { useStore } from '../store';
 import type { Product } from '../types';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
+import { formatCurrency } from '../utils/localization';
 
 interface ProductCardProps {
     product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-    const { addToCart } = useStore();
+    const { addToCart, language } = useStore();
     const { t } = useTranslation();
+
+    // Get localized product data
+    const localizedData = product.translations[language];
+    const price = language === 'pt' ? product.priceBRL : product.priceUSD;
+    const formattedPrice = formatCurrency(price, language);
 
     return (
         <div className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div className="w-full h-80 overflow-hidden bg-gray-200">
                 <img
                     src={product.image}
-                    alt={product.name}
+                    alt={localizedData.name}
                     className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
             </div>
             <div className="p-6">
                 <div className="flex justify-between items-start">
                     <div>
-                        <p className="text-sm text-primary font-medium mb-1">{product.category}</p>
+                        <p className="text-sm text-primary font-medium mb-1">{localizedData.category}</p>
                         <h3 className="text-lg font-bold text-gray-900">
-                            {product.name}
+                            {localizedData.name}
                         </h3>
                     </div>
-                    <p className="text-lg font-semibold text-gray-900">${product.price}</p>
+                    <p className="text-lg font-semibold text-gray-900">{formattedPrice}</p>
                 </div>
-                <p className="mt-2 text-sm text-gray-500 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{product.description}</p>
+                <p className="mt-2 text-sm text-gray-500 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{localizedData.description}</p>
                 <button
                     onClick={() => addToCart(product)}
                     className="mt-4 w-full flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-4 rounded-xl hover:bg-primary transition-colors active:scale-95 duration-200"
